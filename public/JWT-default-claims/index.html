@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JWT(Json Web Token)中默认的声明含义 | ll(be)tter | Everything&#39;ll (be)tter</title>
+
+  
+  <meta name="author" content="Tuo">
+  
+
+  
+  <meta name="description" content="本文参考资料：
+https://tools.ietf.org/html/rfc7519#section-4.1">
+  
+
+  
+  <meta name="keywords" content="Blog,Sirius,Tuo,Github">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="JWT(Json Web Token)中默认的声明含义"/>
+
+  <meta property="og:site_name" content="ll(be)tter"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="ll(be)tter" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">ll(be)tter</a>
+    </h1>
+    <p class="site-description">Everything&#39;ll (be)tter</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>JWT(Json Web Token)中默认的声明含义</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/JWT-default-claims/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-07-19T07:02:26.000Z">
+          2018-07-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>本文参考资料：</p>
+<p><a href="https://tools.ietf.org/html/rfc7519#section-4.1" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc7519#section-4.1</a></p>
+<a id="more"></a> 
+<p>按照JWT协议的说法，默认的声明是可选的，目前是为了提供参考、增加payload效能，同时为各语言的实现提供参考。</p>
+<h2 id="iss-Issuer"><a href="#iss-Issuer" class="headerlink" title="iss(Issuer)"></a>iss(Issuer)</h2><p>jwt的颁发者，其值应为大小写敏感的字符串或Uri。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="aud-Audience"><a href="#aud-Audience" class="headerlink" title="aud(Audience)"></a>aud(Audience)</h2><p>jwt的适用对象，其值应为大小写敏感的字符串或Uri。一般可以为特定的App、服务或模块。</p>
+<p>比如我们颁发了一个jwt给一个叫”JsonWebToken”的app使用，sub可以是这个app的包签名或者标识。</p>
+<p>服务器端的安全策略在签发时和验证时，aud必须是一致的。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="sub-Subject"><a href="#sub-Subject" class="headerlink" title="sub(Subject)"></a>sub(Subject)</h2><p>jwt的所有者，可以是用户ID、唯一标识。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span>,</span><br><span class="line">    <span class="string">"sub"</span>: <span class="string">"10000"</span> <span class="comment">// user id</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="exp-Expiration-Time"><a href="#exp-Expiration-Time" class="headerlink" title="exp(Expiration Time)"></a>exp(Expiration Time)</h2><p>jwt的过期时间，必须是可以解析为时间/时间戳的数字类型。服务器端在验证当前时间大于过期时间时，应当验证不予通过。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span>,</span><br><span class="line">    <span class="string">"sub"</span>: <span class="string">"10000"</span>, <span class="comment">// user id</span></span><br><span class="line">    <span class="string">"exp"</span>: <span class="number">1516239022</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="nbf-Not-Before"><a href="#nbf-Not-Before" class="headerlink" title="nbf(Not Before)"></a>nbf(Not Before)</h2><p>表示jwt在这个时间后启用。同exp一样，需为可以解析成时间的数字类型。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span>,</span><br><span class="line">    <span class="string">"sub"</span>: <span class="string">"10000"</span>, <span class="comment">// user id</span></span><br><span class="line">    <span class="string">"exp"</span>: <span class="number">151239022</span>,</span><br><span class="line">    <span class="string">"nbf"</span>: <span class="number">151139022</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="iat-Issued-At"><a href="#iat-Issued-At" class="headerlink" title="iat(Issued At)"></a>iat(Issued At)</h2><p>jwt的签发时间。同exp一样，需为可以解析成时间的数字类型。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span>,</span><br><span class="line">    <span class="string">"sub"</span>: <span class="string">"10000"</span>, <span class="comment">// user id</span></span><br><span class="line">    <span class="string">"exp"</span>: <span class="number">151239022</span>,</span><br><span class="line">    <span class="string">"nbf"</span>: <span class="number">151139022</span>,</span><br><span class="line">    <span class="string">"iat"</span>: <span class="number">151039022</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="jti-JWT-ID"><a href="#jti-JWT-ID" class="headerlink" title="jti(JWT ID)"></a>jti(JWT ID)</h2><p>签发jwt时给予当前token的唯一ID，通常用于一次性消费的token。</p>
+<p>e.g.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"iss"</span>: <span class="string">"llbetter.com"</span>,</span><br><span class="line">    <span class="string">"aud"</span>: <span class="string">"com.llbetter.JsonWebToken"</span>,</span><br><span class="line">    <span class="string">"sub"</span>: <span class="string">"10000"</span>, <span class="comment">// user id</span></span><br><span class="line">    <span class="string">"exp"</span>: <span class="number">151239022</span>,</span><br><span class="line">    <span class="string">"nbf"</span>: <span class="number">151139022</span>,</span><br><span class="line">    <span class="string">"iat"</span>: <span class="number">151039022</span>,</span><br><span class="line">    <span class="string">"jti"</span>: <span class="string">"550e8400-e29b-41d4-a716-446655440000"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/个人/">个人</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/jwt/">jwt</a><a href="/tags/develop/">develop</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'llbetter';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Powered by <a href="https://github.com/sirius1024" target="_blank">Tuo</a>
+    </br>
+    
+    &copy; 2018 Tuo
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

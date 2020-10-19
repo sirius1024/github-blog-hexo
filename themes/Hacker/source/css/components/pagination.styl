@@ -1,6 +1,10 @@
-$paginationRed = #f03838
-$paginationWhite = #fff
+$paginationCommonColor = #f03838
+$paginationCommonHoverColor = #fff
+$paginationBorderCommonColor = #e0e0e0
 
+$paginationDarkColor = #f03838
+$paginationDarkHoverColor = #000
+$paginationBorderDarkColor = #636366
 
 .pagination
   position: relative;
@@ -16,9 +20,9 @@ $paginationWhite = #fff
 
   .pagination-prev
   .pagination-next
-    color $paginationRed
+    color $paginationCommonColor
     font-size 1.6rem
-    border: 1px solid #e0e0e0;
+    border: 1px solid $paginationBorderCommonColor;
     line-height: 30px;
     height: 32px;
     padding: 0 20px;
@@ -27,6 +31,18 @@ $paginationWhite = #fff
     transition-duration: 0.4s;
 
     &:hover
-      color: $paginationWhite;
-      background-color: $paginationRed;
-      border-color: $paginationRed;
+      color: $paginationCommonHoverColor;
+      background-color: $paginationCommonColor;
+      border-color: $paginationCommonColor;
+
+@media (prefers-color-scheme dark)
+  .pagination
+    .pagination-prev
+    .pagination-next
+      color $paginationDarkColor
+      border: 1px solid $paginationBorderDarkColor;
+
+      &:hover
+        color: $paginationDarkHoverColor;
+        background-color: $paginationDarkColor;
+        border-color: $paginationDarkColor;

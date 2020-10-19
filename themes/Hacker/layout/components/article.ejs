@@ -43,6 +43,9 @@
     <div class="entry">
       <% if (item.excerpt && index){ %>
         <%- item.excerpt %>
+        <% if (theme.read_more_btn){ %>
+          <p><a class="excerpt-btn" href="<%- item.path %>"><span><%- __('read_more') %></span></a></p>
+        <% } %>
       <% } else { %>
         <%- item.content %>
       <% } %>
@@ -83,7 +86,7 @@
 
     </div>
 
-    <% if (index && (theme.duoshuo || theme.disqus)){ %>
+    <% if (index && (theme.disqus || theme.gitment || theme.valine)) { %>
     <div class="article-meta pull-right">
       <span>
         <i class="icon-comments"></i>
@@ -95,6 +98,6 @@
     <% } %>
   </div>
 </article>
-<% if (!index && item.comments && (theme.duoshuo || theme.disqus)){ %>
+<% if (!index) { %>
   <%- partial('comment') %>
 <% } %>

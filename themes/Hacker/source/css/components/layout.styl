@@ -1,6 +1,8 @@
-// vari
-$bodyBgColor = #f7f7f7
-$mainBgColor = #ffffff
+$bodyBgCommonColor = #f7f7f7
+$mainBgCommonColor = #ffffff
+
+$bodyBgDarkColor = #000000
+$mainBgDarkColor = #110f12
 
 html
   font-size 10px
@@ -20,7 +22,7 @@ a
 
 
 body
-  background-color $bodyBgColor
+  background-color $bodyBgCommonColor
   font-family "Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif
   -moz-osx-font-smoothing grayscale
   -webkit-font-smoothing antialiased
@@ -29,7 +31,7 @@ body
   .blog
     max-width 1170px
     min-height 100vh
-    background-color $mainBgColor
+    background-color $mainBgCommonColor
     margin: 0 auto
 
     .content
@@ -38,3 +40,10 @@ body
       width 100%
       padding: 80px 10px 10px;
       margin 0 auto
+
+@media (prefers-color-scheme dark)
+  body
+    background-color $bodyBgDarkColor
+
+    .blog
+      background-color $mainBgDarkColor

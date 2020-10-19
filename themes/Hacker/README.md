@@ -7,7 +7,8 @@ __Hacker is a simple blog theme focused on writing. In such a trend of complex t
 The beginning is [moyo](http://liuxinyu.me/) created a theme of Wordpress , by DaraW transplanted to Hexo.
 
 ## Demo
-You can refer to my blog: [DaraW](http://blog.daraw.cn/)  
+You can refer to my blog: [DaraW](http://blog.daraw.cn/).  
+Also, you can try auto-deployment with TravisCI, refer to [CodeDaraW/Blog](https://github.com/CodeDaraW/Blog)。
 
 ![](https://ooo.0o0.ooo/2016/08/04/57a306f56bee2.png
 )
@@ -29,12 +30,29 @@ __Notice: After every update, you'd better run command `hexo clean` to clean cac
 
 ## Configure
 ### Enable comments and Google Analytics
-In the theme configuration file `_config.yml`:
+Refering to the example configuration file `_config.example.yml`, 
+create the theme configuration file `_config.yml` and edit it:
 
 ```yaml
-# duoshuo comment
-duoshuo: true
-duoshuo_name:
+# gitment
+gitment: false
+gitment_owner:
+gitment_repo:
+gitment_client_id:
+gitment_client_secret:
+
+# gitalk
+gitalk: false
+gitalk_owner:
+gitalk_admin: []
+gitalk_repo:
+gitalk_client_id:
+gitalk_client_secret:
+
+# valine comment
+valine: false
+leancloud_id:
+leancloud_key:
 
 # disqus comment
 disqus: false
@@ -42,16 +60,34 @@ disqus_shortname:
 
 # google analytics
 googleTrackId:
+
+# baidu analytics
+baiduTrackId:
 ```
 
+`gitment`: `boolean`，use gitment or not  
+`gitment_owner`: `string`，your GitHub ID  
+`gitment_repo`: `string`，the repo to store comment data  
+`gitment_client_id`: `string`，your client ID  
+`gitment_client_secret`: `string`，your client secret  
 
-`duoshuo`: `boolean`, use duoshuo or not;  
-`duoshuo_name`: `string`, your duoshup ID, please don't use other people's IDs。
+`gitalk`: `boolean`，use gitalk or not  
+`gitalk_owner`: `string`，your GitHub ID  
+`gitalk_admin`: `array`，all the admin GitHub IDs  
+`gitalk_repo`: `string`，the repo to store comment data 
+`gitalk_client_id`: `string`，your client ID 
+`gitalk_client_secret`: `string`，your client secret  
+
+
+`valine`: `boolean`, use Valine or not  
+`leancloud_id`: `string`, your leancloud ID  
+`leancloud_key`: `string`, your leancloud Key  
 
 `disqus`: `boolean`, use disqus or not;  
 `disqus_shortname`: your disqus site shortname.
 
 `googleTrackId`: your Google Analytics ID, Hacker will not use Google Analytics if it's empty.
+`baiduTrackId`: your Baidu Analytics ID, Hacker will not use Baidu Analytics if it's empty.
 
 ### Enable Categories and Tags pages
 Categories Page: run `hexo new page categories`，then modify the generated file `source/categories/index.md`：
@@ -80,32 +116,6 @@ menu:
   Categories: /categories
   Tags: /tags
 ```
-
-## Update
-### v1.1.0
-* Add support for closing article comments ([issue#14](https://github.com/CodeDaraW/Hacker/issues/14))
-* Add support for categories and tags ([issue#7](https://github.com/CodeDaraW/Hacker/issues/7))
-
-### v1.0.1
-* fix incorrect comment link on the home page
-
-### v1.0
-* fix bug caused by subdirectory ([issue#10](https://github.com/CodeDaraW/Hacker/issues/10))
-* fix display of `code` tag
-
-
-### v0.3.
-* Refactor ejs template files
-* Replace css with stylus
-* Add English Version README
-
-
-### v0.2
-* Remove some useless css
-* Fix bug that icon still shows when there are no categories or tags
-* Rewrite the archive index page
-* Change the display of code block
-
 
 ## License
 GNU GPL(General Public License) v2.0

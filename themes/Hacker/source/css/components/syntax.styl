@@ -1,14 +1,22 @@
+$hightlightBgCommonColor = #eee
+$hightlightBorderCommonColor = #fff
+$hightlightTextCommonColor = #666
+
+$hightlightBgDarkColor = #222
+$hightlightBorderDarkColor = #000
+$hightlightTextDarkColor = #fff
+
 .entry
   .gist
-    background #eee
-    border 1px solid white
+    background $hightlightBgCommonColor
+    border 1px solid $hightlightBorderCommonColor
     margin 15px 0px
     padding 7px 15px
     border-radius 2px
-    text-shadow 0 0 1px #fff
+    text-shadow 0 0 1px $hightlightBorderCommonColor
     line-height 1.6
     overflow auto
-    color #666
+    color $hightlightTextCommonColor
     .gist-file
       border none
       font-family inherit
@@ -25,7 +33,7 @@
         color color-meta
         margin-top 5px
         padding 0
-        text-shadow 0 0 1px #fff
+        text-shadow 0 0 1px $hightlightBorderCommonColor
         font-size 100%
         a
           color color-link
@@ -33,12 +41,12 @@
             color color-link
 
 figure.highlight
-  background #eee
+  background $hightlightBgCommonColor
   border 1px solid color-border
   margin 1em 0
   padding 1em
   border-radius 2px
-  text-shadow 0 0 1px #fff
+  text-shadow 0 0 1px $hightlightBorderCommonColor
   line-height 1.6
   overflow auto
   position relative
@@ -46,7 +54,7 @@ figure.highlight
   figcaption
     color color-meta
     margin-bottom 5px
-    text-shadow 0 0 1px #fff
+    text-shadow 0 0 1px $hightlightBorderCommonColor
     a
       position absolute
       right 15px
@@ -69,15 +77,15 @@ figure.highlight
 
   .code
     padding-left 15px
-    border-left 1px solid #fff
-    color #666
+    border-left 1px solid $hightlightBorderCommonColor
+    color $hightlightTextCommonColor
 
   .line
     height: 20px
 
 pre
   // Theme: Solarized - Light
-  // More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html
+  // More theme here: https://highlightjs.org/static/demo/
   .comment
   .template_comment
   .diff .header
@@ -145,3 +153,35 @@ pre
 
   .deletion
     color #dc322f
+
+@media (prefers-color-scheme dark)
+  .entry
+    .gist
+      background $hightlightBgDarkColor
+      border 1px solid $hightlightBorderDarkColor
+      text-shadow 0 0 1px $hightlightBorderDarkColor
+      color $hightlightTextDarkColor
+      .gist-file
+        .gist-meta
+          text-shadow 0 0 1px $hightlightBorderDarkColor
+
+  figure.highlight
+    background $hightlightBgDarkColor
+    text-shadow 0 0 1px $hightlightBorderDarkColor
+    figcaption
+      text-shadow 0 0 1px $hightlightBorderDarkColor
+
+    .code
+      border-left 1px solid $hightlightBorderDarkColor
+      color $hightlightTextDarkColor
+
+  pre
+    // Theme: Solarized - Dark
+    .comment
+    .template_comment
+    .diff .header
+    .doctype
+    .pi
+    .lisp .string
+    .javadoc
+      color #586e75
